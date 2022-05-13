@@ -1,0 +1,144 @@
+{
+	"info": {
+		"_postman_id": "4261cbf1-e683-49cd-b594-e2f233837241",
+		"name": "API-Collection-Mahaveer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"id=40 has userid as 4\", function() {\r",
+							"    pm.expect.body(\"title\").to.have.string()\r",
+							"});\r",
+							"\r",
+							"pm.test(\"title as string\", function() {\r",
+							"    pm.response.to.have.body(\"title\")\r",
+							"});\r",
+							"pm.test('HTTP status code is 200 Content type and  Response time is less than 1000ms', function (done) {\r",
+							"  setTimeout(() => {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"    done();\r",
+							"  }, 1000);\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000)\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://jsonplaceholder.typicode.com/posts?id=40",
+					"protocol": "https",
+					"host": [
+						"jsonplaceholder",
+						"typicode",
+						"com"
+					],
+					"path": [
+						"posts"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "40"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('HTTP status code is 200 Content type is present and  Response time is less than 1000ms', function (done) {\r",
+							"  setTimeout(() => {\r",
+							"    pm.expect(pm.response.code).to.equal(201);\r",
+							"    done();\r",
+							"  }, 1000);\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000)\r",
+							"});\r",
+							"pm.test(\"Body matches email\", function() {\r",
+							"    pm.expect(pm.response.text()).to.include(\"email\")\r",
+							"});\r",
+							"pm.test(\"Body matches first_name\", function() {\r",
+							"    pm.expect(pm.response.text()).to.include(\"first_name\")\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"email\": \"{{email}}\", \r\n\"first_name\": \"{{first_name}}\", \r\n\"last_name\": \"K\", \r\n\"avatar\": \"\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://reqres.in/api/users/"
+			},
+			"response": []
+		},
+		{
+			"name": "PutRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"updatedAt\", function() {\r",
+							"    pm.expect(pm.response.text()).to.include(\"updatedAt\")\r",
+							"});\r",
+							"\r",
+							"pm.test('HTTP status code is 200 Content type is present and  Response time is less than 1000ms', function (done) {\r",
+							"  setTimeout(() => {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"    done();\r",
+							"  }, 1000);\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000)\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"email\": \"amith.kumar@reqres.in\", \r\n\"first_name\": \"Amith\", \r\n\"last_name\": \"Kumar\", \r\n\"avatar\": \"\", \"id\": \"664\", \r\n\"createdAt\": \"2022-02-15T15:18:16.933Z\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://reqres.in/api/users/"
+			},
+			"response": []
+		}
+	]
+}
